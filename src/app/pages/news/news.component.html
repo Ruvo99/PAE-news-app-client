@@ -1,0 +1,28 @@
+<h2>{{title}}</h2>
+
+<h3>Elegir busqueda y fuente:</h3>
+
+<form (submit)="doSearch()">
+    <input name="buscar" type="text" [(ngModel)]="search" placeholder="Buscar">
+    <select name="source" [(ngModel)]="source">
+        <option *ngFor="let item of sources" value="{{item.id}}">{{item.name}}</option>
+    </select>
+    <button>Buscar</button>
+</form>
+
+<div *ngIf="news.length==0">
+    <p>No hay ningún resultado. Por favor ingrese un valor en la caja de texto</p>
+</div>
+
+<div id="news-container">
+    <div class="grid">
+        <div *ngFor="let item of news" class="xs-100 md-50 lg-33">
+            <h2>{{item.title}}</h2>
+            <p>{{item.description}}</p>
+            <img src="{{item.urlToImage || 'https://th.bing.com/th/id/OIP.TmXzAfJr8c1Wn2XH7sVpIgHaFu?pid=Api&rs=1'}}"
+                alt="" style="max-width: 100%">
+            <br>
+            <button class="secondary" (click)="window.location.href='item.url'">View details</button>
+        </div>
+    </div>
+</div>
